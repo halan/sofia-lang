@@ -2,7 +2,7 @@ start
 = statement+
 
 statement 
-= _ lb stmt:(decl / expr) _ lb { 
+= _ lb stmt:(fn / decl / expr) _ lb { 
 	return stmt; 
 }
 
@@ -58,7 +58,7 @@ literal
 }
 
 fn
-= "aprenda" id:[a-zA-Z]+ parameters:((ws? [a-zA-Z]+)+)? ws* body:block { 
+= ws* "aprenda" ws+ id:[a-zA-Z]+ parameters:((ws? [a-zA-Z]+)+)? ws* body:block { 
 	return { 
 		type: "function", 
 		params: parameters ? parameters.map(function(a) { return a[1].join("") }) : null ,
